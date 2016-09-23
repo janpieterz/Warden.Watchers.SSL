@@ -6,6 +6,7 @@ namespace Warden.Watchers.SSL
 {
     public class SslWatcherConfiguration
     {
+        public TimeSpan ExpirationAfter { get; protected set; }
         public Uri Uri { get; protected set; }
         public Func<X509Certificate2, Task<bool>> EnsureThatAsync { get; protected set; }
         public Func<X509Certificate2, bool> EnsureThat { get; protected set; }
@@ -55,6 +56,14 @@ namespace Warden.Watchers.SSL
 
                 Configuration.EnsureThatAsync = ensureThat;
 
+                return Configurator;
+            }
+
+            public T WithExpirationAfter(TimeSpan span)
+            {
+                if(span == null) 
+                    throw new ArgumentException("Ensure the timespan to check for expiration can not be null", nameof(span));
+                Configuration.ExpirationAfter = span;
                 return Configurator;
             }
         }

@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.3.0",
   "description": "Warden watcher for SSL certificates",
   "authors": [ "Jan-Pieter Zoutewelle" ],
@@ -8,16 +8,18 @@
     "licenseUrl": "https://raw.githubusercontent.com/janpieterz/Warden.Watchers.SSL/master/LICENSE"
   },
   "dependencies": {
-    "Warden": "1.3.0" 
+    "System.Net.Http": "4.1.0",
+    "Warden": "1.3.0"
   },
 
   "frameworks": {
-    "net461": {}
-    //"netcoreapp1.0": {
-    //  "imports": "dnxcore50",
-    //  "dependencies": {
-    //    "System.Net.Requests": "4.0.11" 
-    //  }
-    //}
+    "net461": {
+      "dependencies": {}
+    },
+    "netcoreapp1.0": {
+      "imports": "dnxcore50",
+      "dependencies": {
+      }
+    }
   }
 }
