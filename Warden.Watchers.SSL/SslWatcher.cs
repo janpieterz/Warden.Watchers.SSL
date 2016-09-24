@@ -66,7 +66,7 @@ namespace Warden.Watchers.SSL
             if (_configuration.ExpirationAfter != default(TimeSpan) && certificate2.NotAfter - DateTime.Now < _configuration.ExpirationAfter)
             {
                 return SslWatcherCheckResult.Create(this, false, configurationUri, certificate2,
-                    $"SSL endpoint `{configurationUri}` has returned a certificate that will expire {certificate2.NotAfter}.");
+                    $"SSL endpoint `{configurationUri}` has returned a certificate that will expire too soon: {certificate2.NotAfter}.");
             }
 
             if (_configuration.EnsureThatAsync != null)
