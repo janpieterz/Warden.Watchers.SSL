@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Warden watcher for SSL certificates</Description>
+    <VersionPrefix>1.3.2</VersionPrefix>
+    <Authors>Jan-Pieter Zoutewelle</Authors>
+    <TargetFramework>netstandard20</TargetFramework>
+    <AssemblyName>Warden.Watchers.SSL</AssemblyName>
+    <PackageId>Warden.Watchers.SSL</PackageId>
+    <PackageTags>Warden;SSL;Validate;Certificate</PackageTags>
+    <PackageProjectUrl>https://github.com/janpieterz/Warden.Watchers.SSL</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/janpieterz/Warden.Watchers.SSL/master/LICENSE</PackageLicenseUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Version>1.4.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.4.0.0</AssemblyVersion>
+    <FileVersion>1.4.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Warden" Version="1.3.0" />
+    <PackageReference Include="System.Net.Http" Version="4.1.1" />
+  </ItemGroup>
+
+</Project>

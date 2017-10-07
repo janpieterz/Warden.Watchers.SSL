@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -18,23 +17,10 @@ namespace Warden.Watchers.SSL
             try
             {
                 X509Certificate2 certificate2 = null;
-#if NET461
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_configuration.Uri);
-                HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
-                response.Dispose();
-                var certificate = request.ServicePoint.Certificate;
-                if (certificate == null)
-                {
-                    return SslWatcherCheckResult.Create(this, false, _configuration.Uri, null,
-                        $"{_configuration.Uri} does not appear to have a SSL certificate");
-                }
-                certificate2 = new X509Certificate2(certificate);
-
-#else
                 HttpClientHandler handler = new HttpClientHandler
                 {
                     ServerCertificateCustomValidationCallback =
-                        delegate(HttpRequestMessage message, X509Certificate2 x509Certificate2, X509Chain arg3,
+                        delegate (HttpRequestMessage message, X509Certificate2 x509Certificate2, X509Chain arg3,
                             SslPolicyErrors arg4)
                         {
                             certificate2 = new X509Certificate2(x509Certificate2.RawData);
@@ -45,12 +31,11 @@ namespace Warden.Watchers.SSL
 
                 HttpClient client = new HttpClient(handler, true);
                 await client.GetAsync(_configuration.Uri);
-                
+
                 if (certificate2 == null)
                 {
                     throw new Exception("No certificate created.");
                 }
-#endif
                 return await EnsureAsync(_configuration.Uri, certificate2);
             }
             catch (Exception exception)
